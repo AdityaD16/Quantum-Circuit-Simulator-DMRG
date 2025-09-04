@@ -5,7 +5,7 @@ This repository implements simulations of **quantum circuits** with **Tree Tenso
 The code was utilized to obtain the results in the work: “Simulating Quantum Circuits with Tree Tensor Networks using Density-Matrix Renormalization Group Algorithm” ([arXiv:2504.16718](https://arxiv.org/abs/2504.16718)). 
 
 ## Installation
-Install all the required dependencies with `pip install -r requirements.txt`
+Install all the required dependencies with `pip install -r requirements.txt`.
 
 ## Simulation Parameters
 
