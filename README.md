@@ -22,7 +22,7 @@ Install all the required dependencies with `pip install -r requirements.txt`.
 | `network_structure`  | Defines the hierarchical structure of the TTN, e.g., `[1, 3, 9, 27]` for a ternary tree, `[1, 2,4,8,16]` for a binary tree.  |
 | `compression_steps`  | Number of tensor compression steps per circuit depth |
 | `no_sweeps`          | Number of DMRG sweeps|
-| `Dmax`               | List of bond dimensions to use in the tensor network |
+| `Dmax`               | List of max bond dimensions to use in the tensor network |
 | `runs`               | Number of independent simulations to average over |
 
 
