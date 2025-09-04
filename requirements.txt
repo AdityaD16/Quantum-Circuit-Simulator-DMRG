@@ -1,0 +1,10 @@
+numpy
+opt_einsum
+cotengra
+networkx
+scipy
+tqdm
+jax
+jaxlib
+matplotlib
+optuna 
