@@ -8,17 +8,23 @@ import numpy as np
 
 def main():
     """Configures and runs the simulation experiment."""
-    # Experiment configuration parameters
-    Depth = 5 # Depth of the circuit
-    compression_steps = 2 # Number of compression steps per depth
-    no_sweeps = 2 # Number of DMRG sweeps
-    Dmax = [10]
-    no_qubits = 27
-    network_structure = [1, 3,9,27]  # TTN Structure
-    circuit_type = "random"
-    TTN_type = "Blind"
-    runs = 2
-    network_type = "tree"
+
+
+    no_qubits = 27                  # Total number of qubits
+    qubit_graph = nearest_neighbour_edge_list(no_qubits)  # Qubit connectivity graph
+    circuit_type = "random"         # Circuit type: "random" or "qaoa"
+    Depth = 5                       # Circuit depth (number of layers)
+
+    network_type = "tree"           # Network type: "tree" (TTN) or "mps"
+    qubit_order = "Blind"           # TTN ordering: "Naive" or "Blind"
+    network_structure = [1, 3, 9, 27]  # TTN structure (branching hierarchy)
+
+    compression_steps = 2           # Compression steps per depth
+    no_sweeps = 2                   # Number of DMRG sweeps
+    Dmax = [4, 8, 12]               # List of bond dimensions to test
+    runs = 2                        # Number of independent runs per setup
+
+    
 
     Fidelity_list = []
 
@@ -29,11 +35,10 @@ def main():
         if network_type == "tree":
             D = D_tree(network_structure,d_max)
         else:
-            D = D_mps(network_structure,d_max)
+            D = D_mps(no_qubits,d_max)
         Fidelity_run = 0
         for i in tqdm(range(runs), desc="Runs", leave=False):
-            edge_list = edge_extract(nearest_neighbour_edge_list(no_qubits),TTN_type)
-            
+            edge_list = edge_extract(qubit_graph,qubit_order)
             fidelity_results = DMRG(
                 compression_steps=compression_steps,
                 depth=Depth,
